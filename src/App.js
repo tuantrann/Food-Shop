@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
+
 class App extends Component {
   state  = {
     persons: [
@@ -67,13 +68,6 @@ class App extends Component {
 //     })
 //   }; 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '9px',
-      cursor: 'pointer'
-    };
 
     let persons = null;
 
@@ -89,18 +83,33 @@ class App extends Component {
             changed={(event) => this.nameChangeHandler(event, person.id)} />
         })}
       </div>
-      )
+      );
+
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // }
+    }
+
+    let classes = [];
+    if (this.state.persons.length <= 2) { 
+      classes.push('red');
+    }
+    if(this.state.persons.length <= 1) {
+      classes.push('bold');
     }
 
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is working!</p>
+        <p className={classes.join(' ')}>This is working!</p>
         <button
-        style={style} 
+        className="button"
+        alt={this.state.showPersons}
         onClick={this.togglePersonHandler}>Toggle</button>
         { persons }
-     </div>
+      </div>
     );
   }
 }
